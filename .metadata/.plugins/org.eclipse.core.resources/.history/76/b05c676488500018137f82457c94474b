@@ -1,0 +1,200 @@
+
+public class ArrayRunner {
+	
+	public static int findEquilibriumIndex(int[] inputArray){
+		int index = -1;
+		int sum=0;
+		int leftSum = 0;
+		
+		for(int i=0;i<inputArray.length;i++){
+			sum+=inputArray[i];
+		}
+		
+		for(int i=0;i<inputArray.length;i++){
+			sum-=inputArray[i];
+			
+			if(sum == leftSum){
+				return i;
+			}
+			
+			leftSum +=inputArray[i];
+			
+		}
+		
+		return index;
+	}
+	
+	public static void printDuplicates(int[] inputArray){
+		int n = inputArray.length;
+		
+		for(int i=0;i<inputArray.length;i++){
+			int index = inputArray[i]%n;
+			inputArray[index] +=n;
+			
+		}
+		
+		System.out.println(inputArray);
+		
+		for(int i=0;i<inputArray.length;i++){
+			System.out.println(inputArray[i]);
+			if(inputArray[i]/n >1){
+				//System.out.println(i);
+			}
+				//System.out.println(i);
+		}
+		
+	}
+	
+	public static boolean isSafe(int[][] inputMatrix, int x, int y){
+		
+		int n = inputMatrix.length;
+		
+		if(x<n && y<n && x >=0 && y>=0 && inputMatrix[x][y] == 1){
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public static boolean mazeTraversalUtil(int[][] inputMatrix, int x, int y, int[][] solution){
+		
+		 // if (x,y is goal) return true
+        if (x == 3 && y ==3)
+        {
+            solution[x][y] = 1;
+            return true;
+        }
+		if(isSafe(inputMatrix, x, y)){
+			solution[x][y] = 1;
+			if(mazeTraversalUtil(inputMatrix, x, y+1, solution))
+				return true;
+			if(mazeTraversalUtil(inputMatrix, x+1, y, solution))
+				return true;
+			
+			
+			solution[x][y] = 0;
+			return false;
+		}
+		return false;
+	}
+	
+	
+	
+	public static void mazeTraversal(int[][] inputMatrix){
+		
+	}
+	
+	public static void find3Subset(int[] inputArray){
+		
+		int[] smaller = new int[inputArray.length];
+		int[] greater = new int[inputArray.length];
+		
+		int min = 0;
+		smaller[min] = -1;
+		
+		for(int i=0;i<inputArray.length;i++){
+			if(inputArray[i]<=inputArray[min]){
+				min = i;
+				smaller[i]=-1;
+				
+			} else {
+				smaller[i] = i;
+			}
+		}
+		
+		int max = inputArray.length-1;
+		greater[inputArray.length-1]=-1;
+		
+		
+		for(int i=inputArray.length-2;i>=0;i--){
+			if(inputArray[i]>=inputArray[max]){
+				max = i;
+				greater[i]=-1;
+				
+			} else {
+				greater[i] = i;
+			}
+		}
+		
+		for(int i=0;i<inputArray.length;i++){
+			if(smaller[i]!=-1 && greater[i]!=-1){
+				System.out.println(inputArray[smaller[i]] + "----"+ i + "-----"+inputArray[greater[i]]);
+				
+			}	
+		}
+		
+	}
+	
+	public static boolean search2DMatrix(int[][] inputArray, int x){
+		boolean found = false;
+		int i=0;
+		int j=inputArray.length-1;
+		System.out.print(inputArray.toString());
+		
+		while(i<inputArray.length && j>=0){
+			System.out.println(inputArray[i][j]);
+			if(inputArray[i][j]==x){
+				System.out.println("Foudna at ---"+i +"dafsdf"+j);
+;				return true;
+			} else if(inputArray[i][j]>x){
+				j--;
+			}else{
+				i++;
+			}
+		}
+		
+		return true;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[][] inputArray = {
+							{10, 20, 30, 40, 50},
+							  {11, 21 , 31, 41, 51},
+							  {12, 22 , 32, 42, 52},
+							  {13, 23 , 33, 43, 53},
+							  {14, 24 , 34, 44, 54}
+
+								};
+		//System.out.println(search2DMatrix(inputArray, 21));
+
+        int arr[] = {12, 11, 10, 5, 6, 2, 30};
+      //  find3Subset(arr);
+        
+        int arrayValues[] = {1,2,2,3,4};
+        printDuplicates(arrayValues);
+        
+
+        int maze[][]  =  { 
+        	{1, 0, 0, 0},
+            {1, 1, 0, 1},
+            {0, 1, 0, 0},
+            {1, 1, 1, 1}
+        };
+        
+        int sol[][] = { {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+            };
+        
+       // mazeTraversalUtil(maze, 0, 0, sol);
+        
+        //printSolution(sol);
+	}
+	
+
+    /* A utility function to print solution matrix
+       sol[N][N] */
+    static void printSolution(int sol[][])
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+                System.out.print(" " + sol[i][j] +
+                                 " ");
+            System.out.println();
+        }
+    }
+
+}

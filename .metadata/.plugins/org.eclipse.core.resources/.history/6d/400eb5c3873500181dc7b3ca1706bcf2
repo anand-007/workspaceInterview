@@ -1,0 +1,13 @@
+package com.java.lcs;
+
+public class LCS {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String firstInput = "abcdefgh";
+		String secondInput = "bcdg";
+		
+		
+	}
+
+}

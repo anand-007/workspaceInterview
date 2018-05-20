@@ -1,0 +1,24 @@
+
+public class ArrayRunner {
+	
+	public static boolean search2DMatrix(int[][] inputArray, int x){
+		boolean found = false;
+		int i=0;
+		int j=inputArray.
+		return found;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[][] inputArray = {
+							{10, 20, 30, 40, 50},
+							  {11, 21 , 31, 41, 51},
+							  {12, 22 , 32, 42, 52},
+							  {13, 23 , 33, 43, 53},
+							  {14, 24 , 34, 44, 54}
+
+								};
+		System.out.println(search2DMatrix(inputArray, 21));
+	}
+
+}

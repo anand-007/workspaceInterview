@@ -1,0 +1,22 @@
+package com.anand.test;
+
+public class TreeNode {
+	
+	TreeNode right;
+	TreeNode left;
+	int data;
+	
+	TreeNode(TreeNode right, TreeNode left, int data){
+		this.data = data;
+		this.right = right;
+		this.left = left;
+	}
+	
+	int heightOfTree(TreeNode root){
+		if(root == null)
+			return 0;
+		return Math.max(heightOfTree(root.left), heightOfTree(root.right));
+		
+	}
+
+}

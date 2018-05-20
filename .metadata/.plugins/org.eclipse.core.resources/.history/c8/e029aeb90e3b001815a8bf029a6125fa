@@ -1,0 +1,17 @@
+import java.util.Stack;
+
+
+public class StackSorting {
+	
+	public Stack sortStack(Stack inputStack){
+		Stack resultStack = new Stack();
+		
+		return resultStack;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.anand.test;
+
+public class TreeNode {
+	
+	TreeNode right;
+	TreeNode left;
+	int data;
+
+}

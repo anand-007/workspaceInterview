@@ -1,0 +1,17 @@
+
+public class StringRunner {
+	
+	public static void permutate(String input, int l, int r){
+		if(l==r){
+			System.out.println(input);
+		}
+		
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

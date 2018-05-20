@@ -1,0 +1,27 @@
+package com.anand.interview;
+
+public class TreeRunner {
+	
+	public static boolean hasSum(TreeNode root, int sum){
+		
+	}
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TreeNode bottom1 = new TreeNode(40, null, null);
+		TreeNode bottom2 = new TreeNode(50, null, null);
+		TreeNode bottom3 = new TreeNode(60, null, null);
+		TreeNode bottom4 = new TreeNode(70, null, null);
+		
+		TreeNode mid1 = new TreeNode(20, bottom1, bottom2);
+		TreeNode mid2 = new TreeNode(30, bottom3, bottom4);
+		
+		TreeNode root = new TreeNode(10, mid1, mid2);
+		
+		hasSum(root, 70);
+		
+		
+	}
+
+}

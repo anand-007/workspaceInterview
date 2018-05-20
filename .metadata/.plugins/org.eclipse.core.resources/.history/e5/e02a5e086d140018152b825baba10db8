@@ -1,0 +1,15 @@
+package com.anand.test;
+
+public class TreeTest {
+	
+	public static void main(String args){
+		
+		TreeNode child1 = new TreeNode(null, null, 2);
+		TreeNode child2 = new TreeNode(null, null, 3);
+
+		
+		TreeNode root = new TreeNode(child2, child1, 1);
+		
+	}
+
+}

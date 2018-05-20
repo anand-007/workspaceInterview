@@ -1,0 +1,48 @@
+import java.util.Stack;
+
+
+public class StackSorting {
+	
+	public static Stack<Integer> sortStack(Stack<Integer> inputStack){
+		Stack<Integer> resultStack = new Stack<Integer>();
+		
+		while(!inputStack.isEmpty()){
+			Integer item = inputStack.pop();
+			if(resultStack.isEmpty()){
+				resultStack.push(item);
+
+			}
+			if(resultStack.isEmpty() & resultStack.pop() < item){
+				resultStack.push(item);
+			}else if(!resultStack.isEmpty()){
+				while(!resultStack.isEmpty() || resultStack.pop() >item){
+					Integer resultItem = resultStack.pop();
+					if(resultItem > item){
+						inputStack.push(resultItem);
+					}else {
+						resultStack.push(item);
+						break;
+					}
+				}
+			}
+		}
+		
+	
+		return resultStack;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Stack<Integer> inputStack = new Stack<Integer>();
+		inputStack.push(new Integer(10));
+		inputStack.push(new Integer(7));
+		inputStack.push(new Integer(12));
+		inputStack.push(new Integer(5));
+		inputStack.push(new Integer(6));
+		
+		Stack<Integer> outputStack = sortStack(inputStack);
+		System.out.println(outputStack);
+	}
+
+}

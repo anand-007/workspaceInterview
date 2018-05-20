@@ -1,0 +1,36 @@
+package com.anand.interview.linkedlist;
+
+public class LinkedListRunner {
+	
+	public static LinkedListNode reverseLinkedList(LinkedListNode head){
+		
+		LinkedListNode current = head;
+		LinkedListNode temp = head;
+		LinkedListNode previous = null;
+		LinkedListNode next = head;
+		
+		while(current != null){
+			
+			 temp = current.next;
+			 next = temp.next;
+			 temp.next = current;
+			 current.next = previous;
+			 previous = current;
+			 current = temp;
+			
+		}
+		
+		return previous;
+		
+	}
+
+	public static void main(String[] args) {
+		
+		LinkedListNode list = new LinkedListNode();
+		
+		
+		// TODO Auto-generated method stub
+
+	}
+
+}

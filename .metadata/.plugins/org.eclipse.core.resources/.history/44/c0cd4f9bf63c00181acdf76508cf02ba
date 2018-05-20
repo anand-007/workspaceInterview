@@ -1,0 +1,31 @@
+
+public class StringRunner {
+	
+	public static void permutate(String input, int l, int r){
+		if(l==r){
+			System.out.println(input);
+		} else{
+			for(int i=l;i<r;i++){
+				swap(input, i, l);
+				permutate(input, i+1, r);
+				swap(input,l, i);
+			}
+		}
+	}
+	
+	public static String swap (String s, int i, int j)
+	{
+		char[] charArray = s.toCharArray();
+		char temp = charArray[i];
+		charArray[i] = charArray[j];
+		charArray[j] = temp;
+		return charArray.toString();
+		
+	} 
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		permutate("gary",0,3);
+	}
+
+}

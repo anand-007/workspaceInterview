@@ -1,0 +1,22 @@
+package com.java.lcs;
+
+public class LCS {
+	
+	public static String findLCS(String firstInput, String secondInput){
+		String result = new String();
+		
+		return result;
+		
+	}
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String firstInput = "abcdefgh";
+		String secondInput = "bcdg";
+		
+		findLCS(firstInput, secondInput);
+		
+	}
+
+}
