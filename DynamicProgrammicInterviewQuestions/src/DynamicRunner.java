@@ -2,6 +2,10 @@
 public class DynamicRunner {
 	
 	
+	public static int findMinimumNumberOfCoins(int[] inputCoins, int target){
+		
+	}
+	
 	public static int longestPalindromicSubstring(String inputString){
 		return 0;
 	}

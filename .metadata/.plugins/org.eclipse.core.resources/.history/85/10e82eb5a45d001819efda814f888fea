@@ -1,0 +1,413 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Stack;
+
+
+public class ArrayRunner {
+	
+	public static void swap (int i, int j, int[] inputArray){
+		
+		int temp = inputArray[i];
+		inputArray[i] = inputArray[j];
+		inputArray[j] = temp;
+	}
+	
+	public static int[] wiggleSort(int[] inputArray){
+		
+		for(int i=1; i<inputArray.length-1; i++){
+			
+			if((i%2 == 0) && inputArray[i]<inputArray[i-1]){
+				swap(i,i-1, inputArray);
+			}  
+			
+			if((i%2 == 0) && inputArray[i+1]>inputArray[i]){
+				swap(i,i+1, inputArray);
+			}
+			
+		}	
+		return inputArray;
+		
+	}
+	
+	public static void findSubArrayWithGivenSum(int[] inputArray, int sum){
+		
+		int start = 0;
+		int currentSum = inputArray[0];
+		
+		
+		for(int i=1;i<inputArray.length;i++){
+			
+			while(start<i-1 && currentSum>sum){
+				start++;
+			}
+			
+			
+			if(currentSum == sum){
+				System.out.println("--- The value lies betweeen start :"+ start + " and the ending index:"+ (i-1));
+			}
+			
+			currentSum += inputArray[i];
+		}
+		
+	}
+	
+	public static int findNumberOfPlatforms(int[] arrivalArray, int[] deparatureArray){
+		int numberOfPlatforms = 1;
+		Arrays.sort(arrivalArray);
+		Arrays.sort(deparatureArray);
+		
+		int m = arrivalArray.length;
+		int n = deparatureArray.length;
+		
+		int i=0;
+		int j=0;
+		
+		while(i<m && j<n){
+			if(arrivalArray[i]<deparatureArray[j]){
+				numberOfPlatforms++;
+				i++;
+			} else {
+				numberOfPlatforms--;
+				j++;
+			}
+			
+		}
+		
+		return numberOfPlatforms;
+	}
+	
+	public static int findEquilibriumIndex(int[] inputArray){
+		int index = -1;
+		int sum=0;
+		int leftSum = 0;
+		
+		for(int i=0;i<inputArray.length;i++){
+			sum+=inputArray[i];
+		}
+		
+		System.out.println(sum);
+		
+		for(int i=0;i<inputArray.length;i++){
+			sum-=inputArray[i];
+			System.out.println("sum---"+sum);
+			System.out.println("leftSunm"+leftSum);
+			leftSum +=inputArray[i];
+
+			
+			
+			if(sum == leftSum){
+				return i;
+			}
+			
+			
+		}
+		
+		return index;
+	}
+	
+	public static void printDuplicates(int[] inputArray){
+		int n = inputArray.length;
+		
+		for(int i=0;i<inputArray.length;i++){
+			int index = inputArray[i]%n;
+			inputArray[index] +=n;
+			
+		}
+		
+		System.out.println(inputArray);
+		
+		for(int i=0;i<inputArray.length;i++){
+			System.out.println(inputArray[i]);
+			if(inputArray[i]/n >1){
+				//System.out.println(i);
+			}
+				//System.out.println(i);
+		}
+		
+	}
+	
+	public static boolean isSafe(int[][] inputMatrix, int x, int y){
+		
+		int n = inputMatrix.length;
+		
+		if(x<n && y<n && x >=0 && y>=0 && inputMatrix[x][y] == 1){
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public static boolean mazeTraversalUtil(int[][] inputMatrix, int x, int y, int[][] solution){
+		
+		 // if (x,y is goal) return true
+        if (x == 3 && y ==3)
+        {
+            solution[x][y] = 1;
+            return true;
+        }
+		if(isSafe(inputMatrix, x, y)){
+			solution[x][y] = 1;
+			if(mazeTraversalUtil(inputMatrix, x, y+1, solution))
+				return true;
+			if(mazeTraversalUtil(inputMatrix, x+1, y, solution))
+				return true;
+			
+			
+			solution[x][y] = 0;
+			return false;
+		}
+		return false;
+	}
+	
+	
+	
+	public static void mazeTraversal(int[][] inputMatrix){
+		
+	}
+	
+	public static void find3Subset(int[] inputArray){
+		
+		int[] smaller = new int[inputArray.length];
+		int[] greater = new int[inputArray.length];
+		
+		int min = 0;
+		smaller[min] = -1;
+		
+		for(int i=0;i<inputArray.length;i++){
+			if(inputArray[i]<=inputArray[min]){
+				min = i;
+				smaller[i]=-1;
+				
+			} else {
+				smaller[i] = i;
+			}
+		}
+		
+		int max = inputArray.length-1;
+		greater[inputArray.length-1]=-1;
+		
+		
+		for(int i=inputArray.length-2;i>=0;i--){
+			if(inputArray[i]>=inputArray[max]){
+				max = i;
+				greater[i]=-1;
+				
+			} else {
+				greater[i] = i;
+			}
+		}
+		
+		for(int i=0;i<inputArray.length;i++){
+			if(smaller[i]!=-1 && greater[i]!=-1){
+				System.out.println(inputArray[smaller[i]] + "----"+ i + "-----"+inputArray[greater[i]]);
+				
+			}	
+		}
+		
+	}
+	
+	public static boolean search2DMatrix(int[][] inputArray, int x){
+		boolean found = false;
+		int i=0;
+		int j=inputArray.length-1;
+		System.out.print(inputArray.toString());
+		
+		while(i<inputArray.length && j>=0){
+			System.out.println(inputArray[i][j]);
+			if(inputArray[i][j]==x){
+				System.out.println("Foudna at ---"+i +"dafsdf"+j);
+;				return true;
+			} else if(inputArray[i][j]>x){
+				j--;
+			}else{
+				i++;
+			}
+		}
+		
+		return true;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[][] inputArray = {
+							{10, 20, 30, 40, 50},
+							  {11, 21 , 31, 41, 51},
+							  {12, 22 , 32, 42, 52},
+							  {13, 23 , 33, 43, 53},
+							  {14, 24 , 34, 44, 54}
+
+								};
+		//System.out.println(search2DMatrix(inputArray, 21));
+
+        int arr[] = {12, 11, 10, 5, 6, 2, 30};
+      //  find3Subset(arr);
+        
+        int arrayValues[] = {1,2,2,3,4};
+      //  printDuplicates(arrayValues);
+        
+
+        int maze[][]  =  { 
+        	{1, 0, 0, 0},
+            {1, 1, 0, 1},
+            {0, 1, 0, 0},
+            {1, 1, 1, 1}
+        };
+        
+        int sol[][] = { {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+            };
+        
+       // mazeTraversalUtil(maze, 0, 0, sol);
+        
+        //printSolution(sol);
+        
+        int[] equilibriumArray = {1,2,3,6};
+        
+        int ar1r[] = {-7, 1, 5, 2, -4, 3, 0};
+      //  System.out.println(findEquilibriumIndex(ar1r));
+        
+//        
+//        String[] words = { "BANANA", "ANANA", "NANA", "ANA", "NA", "A" };
+//
+//        for(int i = 0; i <words.length-1 ; ++i) {
+//            for (int j = i + 1; j < words.length; ++j) {
+//                if (words[i].compareTo(words[j]) > 0) {
+//
+//                    // swap words[i] with words[j[
+//                    String temp = words[i];
+//                    words[i] = words[j];
+//                    words[j] = temp;
+//                }
+//            }
+//        }
+//
+//        System.out.println("In lexicographical order:");
+//        for(int i = 0; i < 4; i++) {
+//            System.out.println(words[i]);
+//        }
+     //   System.out.println("computer".compareTo ("comparison"));
+        
+        int arra[] = {900, 940, 950, 1100, 1500, 1800};
+        int dep[] = {910, 1200, 1120, 1130, 1900, 2000};
+        
+       // System.out.println("---"+findNumberOfPlatforms(arra,dep));
+        
+        //int[] subArraySum = {1,0,0,4,3,5};
+        
+      //  findSubArrayWithGivenSum(subArraySum, 5);
+        
+        int[] arr1 = {10, 90, 49, 2, 1, 5, 23};
+       // wiggleSort(arr1);
+       // printArray(wiggleSort(arr1));
+        
+        int[][] inputArray1 = {
+				{10, 20, 30, 40},
+				  {11, 21 , 31, 41},
+				  {12, 22 , 32, 42},
+				  {13, 23 , 33, 43}
+
+					};
+        //rotateArray(inputArray1);
+        printSpiralMatrix(inputArray1);
+	}
+	
+	
+	public static void printArray(int[] inputArray){
+		for(int i=0;i<inputArray.length;i++){
+			System.out.print(inputArray[i] + " ");
+		}
+	}
+	
+	public static void printSpiralMatrix(int[][] inputMatrix){
+		int k = 0;
+		int l= 0;
+		int m = inputMatrix.length;
+		int n = inputMatrix.length;
+
+		while(k<m && l<n){
+			for(int i=l;i<n;i++){
+				System.out.print(inputMatrix[k][i]);
+			}
+			k++;
+			for(int j=k;j<m;j--){
+				System.out.print(inputMatrix[j][n-1]);
+			}
+			n--;
+			if(k<m){
+				for(int i=n-1;i>=1;i--){
+					System.out.print(inputMatrix[m-1][i]);
+				}
+				m--;
+			}
+			
+			if(l<n){
+				for(int j=m-1;j>=1;j--){
+					System.out.print(inputMatrix[j][l]);
+				}
+				l++;
+			}
+			
+			
+		}
+	}
+	
+	public static void rotateArray(int[][] mat){
+		int N = mat.length;
+		
+		
+		for(int x=0;x<N/2;x++){
+			for(int y=x;y<N-x-1;y++){
+				 // store current cell in temp variable
+                int temp = mat[x][y];
+      
+                // move values from right to top
+                mat[x][y] = mat[y][N-1-x];
+      
+                // move values from bottom to right
+                mat[y][N-1-x] = mat[N-1-x][N-1-y];
+      
+                // move values from left to bottom
+                mat[N-1-x][N-1-y] = mat[N-1-y][x];
+      
+                // assign temp to left
+                mat[N-1-y][x] = temp;
+            }
+			}
+		printSolution(mat);
+
+		
+	}
+	
+	public static void findNextGreaterNumber(int[] inputArray){
+		
+		Stack<Integer> inputStack = new Stack<Integer>();
+		HashMap<Integer,Integer> resultMap = new HashMap<Integer,Integer>();
+		inputStack.push(inputArray[0]);
+		
+		for(int i=1;i<inputArray.length;i++){
+			if(inputStack.peek()>inputArray[i]){
+				inputStack.push(inputArray[i]);
+			} else {
+				resultMap.put(inputStack.pop(), inputArray[i]);
+			}	
+		}
+		
+	}
+	
+
+    /* A utility function to print solution matrix
+       sol[N][N] */
+    static void printSolution(int sol[][])
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+                System.out.print(" " + sol[i][j] +
+                                 " ");
+            System.out.println();
+        }
+    }
+
+}

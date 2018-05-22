@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Stack;
 
 
 public class ArrayRunner {
@@ -298,8 +300,18 @@ public class ArrayRunner {
         
         int[] arr1 = {10, 90, 49, 2, 1, 5, 23};
        // wiggleSort(arr1);
-        printArray(wiggleSort(arr1));
+       // printArray(wiggleSort(arr1));
         
+        int[][] inputArray1 = {
+				{10, 20, 30, 40},
+				  {11, 21 , 31, 41},
+				  {12, 22 , 32, 42},
+				  {13, 23 , 33, 43}
+
+					};
+        //rotateArray(inputArray1);
+        //printSpiralMatrix(inputArray1);
+        findNextGreaterNumber(new int[]{4,2,7,1,6,8,5,11});
 	}
 	
 	
@@ -307,6 +319,96 @@ public class ArrayRunner {
 		for(int i=0;i<inputArray.length;i++){
 			System.out.print(inputArray[i] + " ");
 		}
+	}
+	
+	public static void printSpiralMatrix(int[][] inputMatrix){
+		int k = 0;
+		int l= 0;
+		int m = inputMatrix.length;
+		int n = inputMatrix.length;
+
+		while(k<m && l<n){
+			for(int i=l;i<n;i++){
+				System.out.print(inputMatrix[k][i]);
+			}
+			k++;
+			for(int j=k;j<m;j--){
+				System.out.print(inputMatrix[j][n-1]);
+			}
+			n--;
+			if(k<m){
+				for(int i=n-1;i>=1;i--){
+					System.out.print(inputMatrix[m-1][i]);
+				}
+				m--;
+			}
+			
+			if(l<n){
+				for(int j=m-1;j>=1;j--){
+					System.out.print(inputMatrix[j][l]);
+				}
+				l++;
+			}
+			
+			
+		}
+	}
+	
+	public static void rotateArray(int[][] mat){
+		int N = mat.length;
+		
+		
+		for(int x=0;x<N/2;x++){
+			for(int y=x;y<N-x-1;y++){
+				 // store current cell in temp variable
+                int temp = mat[x][y];
+      
+                // move values from right to top
+                mat[x][y] = mat[y][N-1-x];
+      
+                // move values from bottom to right
+                mat[y][N-1-x] = mat[N-1-x][N-1-y];
+      
+                // move values from left to bottom
+                mat[N-1-x][N-1-y] = mat[N-1-y][x];
+      
+                // assign temp to left
+                mat[N-1-y][x] = temp;
+            }
+			}
+		printSolution(mat);
+
+		
+	}
+	
+	public static void findNextGreaterNumber(int[] inputArray){
+		
+		Stack<Integer> inputStack = new Stack<Integer>();
+		HashMap<Integer,Integer> resultMap = new HashMap<Integer,Integer>();
+		inputStack.push(inputArray[0]);
+		
+		for(int i=1;i<inputArray.length;i++){
+				if(inputStack.peek()>inputArray[i]){
+					inputStack.push(inputArray[i]);
+				} else {
+					int value = inputStack.peek();
+					while(!inputStack.isEmpty() && value<inputArray[i]){
+						resultMap.put(inputStack.pop(), inputArray[i]);
+						if(!inputStack.isEmpty() )
+						value = inputStack.peek();
+					}
+					inputStack.push(inputArray[i]);
+
+				}	
+		
+		}
+		
+		while(!inputStack.isEmpty()){
+			resultMap.put(inputStack.pop(), -1);
+		}
+		
+		System.out.println(resultMap.toString());
+		
 	}
 	
 

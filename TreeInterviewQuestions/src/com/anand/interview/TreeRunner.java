@@ -9,6 +9,14 @@ public class TreeRunner {
 	
 	static HashMap<String,Integer> m = new HashMap<String,Integer>();
 	
+	public static TreeNode findInorderSuccessor(TreeNode root, TreeNode inputNode){
+		
+		TreeNode resultNode = null;
+		
+		return resultNode;
+		
+	}
+	
 	public static TreeNode findLowestCommonAncestor(TreeNode root, TreeNode node1, TreeNode node2){
 		
 		if(root==null){
